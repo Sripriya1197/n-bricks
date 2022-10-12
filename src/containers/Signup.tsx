@@ -2,9 +2,9 @@ import React from 'react';
 
 function Signup() {
   return (
-    <div>
-    SIgnup
-    </div>
+    <h2>
+    SIGNUP
+    </h2>
   );
 }
 
