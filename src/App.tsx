@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
-import Signup from './containers/Signup';
+import Signup from './containers/Signup/Signup';
 import Home from './containers/Home';
 import Signin from './containers/Signin';
 
