@@ -3,13 +3,9 @@
     padding: 3%;
     border: 1px solid;
 
-    .required::after {
+    .required label::after {
         content: " *";
         color: #e32;
-        position: absolute;
-        margin: 0px 0px 0px -20px;
-        font-size: xx-large;
-        padding: 0 5px 0 0;
     }
 
     input::-webkit-outer-spin-button,
