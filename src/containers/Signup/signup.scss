@@ -1,7 +1,10 @@
+@import './../../style/theme/theme.scss';
+
 .signup {
     width: 40em;
     padding: 3%;
-    border: 1px solid;
+    margin: 2%;
+    border: 1px solid $color-orange;
 
     .required label::after {
         content: " *";

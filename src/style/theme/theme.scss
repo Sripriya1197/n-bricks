@@ -1,2 +1,18 @@
 $color-orange: #FF8C00;
 $color-lightgray: #C6C6C8;
+$color-white: #fff;
+
+
+.btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: $color-white;
+    background-color: $color-orange;
+    border-color: $color-orange;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: $color-white;
+    border: 0.5px solid $color-orange;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(217,110,44, 0.34);
+}
