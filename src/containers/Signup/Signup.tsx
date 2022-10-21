@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from '../../components/Select/Select';
 import Text from '../../components/Text/Text';
 import "./signup.scss";
 import constant from './constants';
-import axios from 'axios';
 import useValidator from '../../utilities/hooks/Validation';
+import { get, post }  from '../../utilities/apiCallerService.tsx/apiCallerService';
+import ReCAPTCHA from "react-google-recaptcha"
+
 
 const Signup = () => {
 
@@ -12,7 +14,14 @@ const Signup = () => {
   const [userIdValidation, setUserIdValidated] = useState(false);
 
   const { ValidatePassword, ValidateMinMaxlength } = useValidator();
+  const [captchaToken, setToken] = useState();
 
+
+  useEffect(() => {
+    get('/dropdown?page=signup').then((response: any) => {
+      console.log(response);
+    })
+  }, []);
 
   const defaultPayload = {
     userClassification: "MYORG",
@@ -49,8 +58,8 @@ const Signup = () => {
   const createUser = (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
     e.preventDefault();
-    if (form.checkValidity()) {
-      axios.post(process.env.HOST_URL + '/signup', payload).then((response) => {
+    if (form.checkValidity() && captchaToken) {
+       post('/signup', payload).then((response: any) => {
         if (response && response.data && response.data.hasOwnProperty('userId')) {
           alert("Sign up Successful");
         }
@@ -155,17 +164,14 @@ const Signup = () => {
           <Select className="form-control" id="country" placeholder="Country" options={constant.countries} value={payload.address.country} onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
         <div className="form-group">
-          <small id="signupterms" className="text-muted">By signing up you agree to our <a href='' onClick={() => window.open('https://www.n-bricks.com/termsofservice')}>Terms of Service</a>.</small>
+          <small id="signupterms" className="text-muted">By signing up you agree to our <a role="button" onClick={() => window.open('https://www.n-bricks.com/termsofservice')}>Terms of Service</a>.</small>
         </div>
-        <div className="form-group">
-          <div className="g-recaptcha" style={{marginLeft: '7rem'}} data-sitekey="6LeNQ4YiAAAAACr0Ds8VmpuDdrQ76oFFfYyLAAkN"></div>
+        <div className="form-group" style={{marginLeft: '20%'}}>
+        <ReCAPTCHA sitekey="6LeNQ4YiAAAAACr0Ds8VmpuDdrQ76oFFfYyLAAkN" onChange={(token:any) => token === null ? setToken(undefined) : setToken(token)} />
         </div>
         <div className="form-group text-center">
           <button
             type="submit"
-            data-sitekey="6LeNQ4YiAAAAACr0Ds8VmpuDdrQ76oFFfYyLAAkN"
-            data-callback='createUser'
-            data-action='submit'
             className="btn btn-primary">Sign Up</button>
         </div>
       </form>
