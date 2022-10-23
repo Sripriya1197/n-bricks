@@ -88,14 +88,14 @@ const Signup = () => {
         </div>
         <div className="form-group required">
         <label>User ID</label>
-          <Text className={userIdValidation ? "form-control is-valid" : "form-control"} id="id" placeholder="User ID" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} />
+          <Text className={userIdValidation ? "form-control is-valid" : "form-control is-invalid"} id="id" placeholder="User ID" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} />
           <div style={{ width: 'inherit' }}>
             <small>Must be unique and 8-20 characters long.</small>
           </div>
         </div>
         <div className="form-group required">
         <label>Password</label>
-          <Text className={pwdValidation ? "form-control is-valid" : "form-control"} id="password" type='password' placeholder="Password" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} />
+          <Text className={pwdValidation ? "form-control is-valid" : "form-control is-invalid"} id="password" type='password' placeholder="Password" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} />
           <div style={{ width: 'inherit' }}>
             <small>Must be 8-20 characters long, atleast one letter and one number.</small>
           </div>
@@ -131,7 +131,7 @@ const Signup = () => {
         <label>Role</label>
           <Select className="form-control" id="role" placeholder="Role" value={payload.role} options={constant.role} onChange={(value: any) => createSignupPayload(value)} />
         </div>
-        <div className="form-group">
+        <div className="form-group required">
         <label>Name of your Business</label>
           <Text className="form-control" id="nameOfBusiness" placeholder="Name of your Business" required={true} onChange={(value: any) => createSignupPayload(value, 'businessInfo')} />
         </div>
@@ -172,6 +172,7 @@ const Signup = () => {
         <div className="form-group text-center">
           <button
             type="submit"
+            disabled={captchaToken ? false : true}
             className="btn btn-primary">Sign Up</button>
         </div>
       </form>

@@ -16,3 +16,9 @@ $color-white: #fff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(217,110,44, 0.34);
 }
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+}
