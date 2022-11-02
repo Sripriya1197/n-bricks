@@ -12,7 +12,7 @@ const Select = (props: { value?: string; options?: any; placeholder?: string; re
     
 return (
     <select className={className} id={id} required={required} placeholder={placeholder} value={newValue} onChange={(value) => onChangeValue(value)}>
-        {options.map((option: any, index: number) => <option key={option.key+index} value={option.key}>{option.value}</option>)}
+        {options.map((option: any, index: number) => <option key={option.value+index} value={option.value}>{option.label}</option>)}
     </select>)}
 
 export default Select;

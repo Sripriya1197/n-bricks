@@ -129,6 +129,8 @@ const Signup = () => {
         <div className="form-group col-12">
           <Text className="form-control" id="passwordHint" type='password' placeholder="Password Hint" required={true} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} helperText="Remember this to recover your User ID / Password." />
         </div>
+
+      
       </div>
     )
   }
