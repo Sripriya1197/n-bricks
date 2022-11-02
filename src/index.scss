@@ -2,13 +2,12 @@
 
 body {
   margin: 0;
-  font-family: "Montserrat, sans-serif";
+  font-family: "Noto Sans" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font: 400 15px Lato, sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Noto Sans";
 }

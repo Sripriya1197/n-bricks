@@ -1,11 +1,13 @@
-$color-orange: #FF8C00;
-$color-lightgray: #C6C6C8;
+$color-orange: #F25E25;
+$color-gray: #888291;
 $color-white: #fff;
 
 
-.btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    color: $color-white;
-    background-color: $color-orange;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: $color-orange;
+    background-color: $color-white;
     border-color: $color-orange;
 }
 
@@ -14,11 +16,32 @@ $color-white: #fff;
     background-color: $color-white;
     border: 0.5px solid $color-orange;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(217,110,44, 0.34);
+    box-shadow: 0 0 0 0.2rem rgba(217, 110, 44, 0.34);
 }
 
-.btn-primary.disabled, .btn-primary:disabled {
-    color: #fff;
-    background-color: #FF8C00;
-    border-color: #FF8C00;
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: $color-gray;
+    background-color: white;
+    border-color: $color-gray;
+}
+
+.MuiStepIcon-root.Mui-active {
+    color: $color-orange  !important
+}
+
+.Mui-completed {
+    color: #F2A025 !important;
+}
+
+.Mui-disabled {
+    svg {
+        color: $color-gray;
+    }
+}
+
+.MuiStepConnector-lineHorizontal {
+    border-color: $color-gray  !important;
+    border-top-style: solid;
+    border-top-width: 3px !important;
 }

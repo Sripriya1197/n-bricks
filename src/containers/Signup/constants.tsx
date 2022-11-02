@@ -1,31 +1,31 @@
 const constant = {
     countries: [
-        { key: "AUS", value: "Australia" },
-        { key: "CA", value: "Canada" },
-        { key: "ENG", value: "England" },
-        { key: "IN", value: "India" },
-        { key: "MX", value: "Mexico" },
-        { key: "UK", value: "United Kingdom" },
-        { key: "US", value: "United States of America" }
+        { value: "AUS", label: "Australia" },
+        { value: "CA", label: "Canada" },
+        { value: "ENG", label: "England" },
+        { value: "IN", label: "India" },
+        { value: "MX", label: "Mexico" },
+        { value: "UK", label: "United Kingdom" },
+        { value: "US", label: "United States of America" }
     ],
     hintQuestions: [
-        { key: "QU1", value: "What is your secret code?" },
-        { key: "QU2", value: "What is your secret pin?" }
+        { value: "QU1", label: "What is your secret code?" },
+        { value: "QU2", label: "What is your secret pin?" }
     ],
     userClassification: [
-        { key: "MYORG", value: "Business" },
-        { key: "IND", value: "Individual" }
+        { value: "MYORG", label: "Business" },
+        { value: "IND", label: "Individual" }
     ],
     role: [
-        {key: "AGT", value: "Agent"},
-        {key: "BRO", value: "Broker"},
-        {key: "CONT", value: "Contractor"},
-        {key: "MFG", value: "Manufacturer"},
-        {key: "PRODU", value: "Producer"},
-        {key: "PROVI", value: "Provider"},
-        {key: "RETAI", value: "Retailer"},
-        {key: "SPEC", value: "Specifier"},
-        {key: "SUPP", value: "Supplier"}
+        {value: "AGT", label: "Agent"},
+        {value: "BRO", label: "Broker"},
+        {value: "CONT", label: "Contractor"},
+        {value: "MFG", label: "Manufacturer"},
+        {value: "PRODU", label: "Producer"},
+        {value: "PROVI", label: "Provider"},
+        {value: "RETAI", label: "Retailer"},
+        {value: "SPEC", label: "Specifier"},
+        {value: "SUPP", label: "Supplier"}
     ]
 }
 
