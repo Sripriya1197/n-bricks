@@ -1,5 +1,5 @@
 const devConfig = {
-    hostUrl: "http://35.226.132.197"
+    hostUrl: "https://signup-apigee-mock-target-abijilgrrq-uw.a.run.app"
 }
 
 export default devConfig

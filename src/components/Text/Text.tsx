@@ -1,11 +1,13 @@
+import { TextField } from '@mui/material';
 import react, { useState } from 'react';
 
 const Text = (props: {
     value?: string; type?: string; placeholder?: string; required?: boolean;
-    className?: string; id: string; onChange?: any; maxLength?: number; minLength?: number; helperText?: string
+    className?: string; id: string; onChange?: any; maxLength?: number; minLength?: number; helperText?: string;
+    disabled?: boolean
 }) => {
 
-    const { value, type, required, className, id, placeholder, onChange, maxLength, minLength, helperText } = props;
+    const { value, type, required, className, id, placeholder, onChange, maxLength, minLength, helperText, disabled} = props;
     const [newValue, updateValue] = useState(value);
 
     const onchangeValue = (event: any) => {
@@ -15,7 +17,7 @@ const Text = (props: {
 
     return (
         <>
-            <input
+            {/* <input
                 type={type}
                 value={newValue}
                 placeholder={placeholder}
@@ -25,7 +27,18 @@ const Text = (props: {
                 minLength={minLength}
                 maxLength={maxLength}
                 onChange={(event) => onchangeValue(event)} />
-            {helperText && <small>{helperText}</small>}
+            {helperText && <small>{helperText}</small>} */}
+            <TextField
+                type={type}
+                required={required}
+                id={id}
+                disabled={disabled}
+                label={placeholder}
+                placeholder={placeholder}
+                value={value}
+                onChange={(event) => onchangeValue(event)}
+                helperText={helperText}
+            />
         </>
     )
 }

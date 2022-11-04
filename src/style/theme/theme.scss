@@ -1,14 +1,16 @@
 $color-orange: #F25E25;
 $color-gray: #888291;
-$color-white: #fff;
+$color-white: #FFFFFF;
 
 
 .btn-primary,
 .btn-primary:hover,
-.btn-primary:not(:disabled):not(.disabled):active {
-    color: $color-orange;
-    background-color: $color-white;
+.btn-primary:not(:disabled):not(.disabled):active,
+button:not(:disabled) {
+    color: $color-white;
     border-color: $color-orange;
+    background: linear-gradient(90deg, #F36223 37.5%, #F19710 100%);
+    border-radius: 10px;
 }
 
 .form-control:focus {
@@ -44,4 +46,16 @@ $color-white: #fff;
     border-color: $color-gray  !important;
     border-top-style: solid;
     border-top-width: 3px !important;
+}
+
+.button:focus {
+    outline: unset !important;
+}
+
+.MuiTextField-root,
+.MuiOutlinedInput-root {
+    background: #FFFFFF;
+    border: 0px solid #D3D3D3 !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
 }
