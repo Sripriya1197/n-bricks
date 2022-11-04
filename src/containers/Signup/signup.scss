@@ -3,7 +3,6 @@
 .signup {
     width: 65rem;
     padding: 3%;
-    margin: 2%;
     background: white;
 
     .required label::after {
@@ -81,4 +80,14 @@
     .rc-anchor {
         box-shadow: unset !important;
     }
+}
+
+.logo {
+  img {
+    width: 5rem;
+    height: 5rem;
+  } 
+   margin-top: 2%; 
+   display: flex;
+   justify-content: center;
 }

@@ -4,19 +4,22 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Layout from './components/Layout/Layout';
-import {   BrowserRouter as Router } from 'react-router-dom';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
+import { theme } from './style/theme/theme';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <Router>
-    <Layout>
-        <App />
-      </Layout>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <App />
+        </Layout>
+      </ThemeProvider>
     </Router>
-  </React.StrictMode>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function

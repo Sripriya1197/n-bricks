@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import { Agent, Broker, Contractor, Manufacturer, Producer, Provider, Retailer, Specifier, Supplier } from '../../assets/Icons/Svg';
 import { East, West } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import Logo from '../../assets/favicon.png';
 
 const Signup = () => {
 
@@ -206,58 +207,58 @@ const Signup = () => {
 
 
   return (
+    <div>
+      <div className='logo'><img src={Logo}></img></div>
+      <div className='col-12 signup'>
+        <form>
+          <div className='col-12 form-group d-flex justify-content-center'>
+            <div className='w-75'>
+              <Stepper activeStep={activeStep} alternativeLabel>
+                {steps.map((step, index) => {
+                  const stepProps: { completed?: boolean } = {};
+                  const labelProps: {
+                    optional?: React.ReactNode;
+                  } = {};
+                  return (
+                    <Step key={step.label} {...stepProps}>
+                      <StepLabel {...labelProps}>{step.label}</StepLabel>
+                    </Step>
+                  );
+                })}
+              </Stepper>
+            </div>
+          </div>
+          <div className='row'>
+            <div className="col-6 form-group text-center line-border">
+              <h2>Create n-Bricks Account</h2>
+              <h4>Enormous and Endless Opportunities</h4>
+            </div>
+            <div className="col-6 form-group">
+              {steps[activeStep].component}
+              <React.Fragment>
+                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                    variant="contained"
+                    startIcon={<West />}
+                  >
+                    Back
+                  </Button>
+                  <Box sx={{ flex: '1 1 auto' }} />
+                  {activeStep === steps.length - 1 ?
+                    <Button onClick={handleNext}>Sign up</Button> :
+                    <Button onClick={handleNext} endIcon={<East />}>Next</Button>}
+                </Box>
+              </React.Fragment>
+            </div>
+          </div>
 
-    <div className='signup'>
-      <form>
-        <div className='col-12 form-group d-flex justify-content-center'>
-          <div className='w-75'>
-            <Stepper activeStep={activeStep} alternativeLabel>
-              {steps.map((step, index) => {
-                const stepProps: { completed?: boolean } = {};
-                const labelProps: {
-                  optional?: React.ReactNode;
-                } = {};
-                return (
-                  <Step key={step.label} {...stepProps}>
-                    <StepLabel {...labelProps}>{step.label}</StepLabel>
-                  </Step>
-                );
-              })}
-            </Stepper>
-          </div>
-        </div>
-        <div className='row'>
-          <div className="col-6 form-group text-center line-border">
-            <h2>Create n-Bricks Account</h2>
-            <h4>Enormous and Endless Opportunities</h4>
-          </div>
-          <div className="col-6 form-group">
-            {steps[activeStep].component}
-            <React.Fragment>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Button
-                  color="inherit"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 1 }}
-                  variant="contained"
-                  startIcon={<West />}
-                >
-                  Back
-                </Button>
-                <Box sx={{ flex: '1 1 auto' }} />
-                {activeStep === steps.length - 1 ?
-                  <Button onClick={handleNext}>Sign up</Button> :
-                  <Button onClick={handleNext} endIcon={<East />}>Next</Button>}
-              </Box>
-            </React.Fragment>
-          </div>
-        </div>
-
-      </form>
+        </form>
+      </div>
     </div>
-
-
   );
 }
 
