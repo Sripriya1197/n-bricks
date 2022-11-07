@@ -74,38 +74,69 @@ const Signup = () => {
           }
           )}
         </div>
-
       </>
     )
   }
 
   const UserDetails = () => {
+    if (showBusinessSection) {
+      return (<BusinessDetails />)
+    } else {
+      return (<IndividualDetails />)
+    }
+  }
+
+  const BusinessDetails = () => {
     return (
       <div className='row'>
+        <div className="form-group col-12">
+          <Text className="form-control" id="organizationname1" placeholder="Name of your Business" required={true} />
+        </div>
+        <div className="form-group col-12">
+          <Text className="form-control" id="organizationname2" placeholder="Inc, LLC, Ltd" required={true} />
+        </div>
+        <div className="form-group col-12"><h4>Primary Contact Details</h4></div>
+        <PrimaryDetails />
+        <div className="form-group col-12"><h4>Business Address</h4></div>
+        <Address />
+      </div>
+    )
+  }
+
+  const PrimaryDetails = () => {
+    return (
+      <>
         <div className="form-group col-4 pr-0">
           <Text className="form-control" id="firstName" placeholder="First Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-4 pr-0">
-          <Text className="form-control" id="firstName" placeholder="Middle Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
+          <Text className="form-control" id="middlename" placeholder="Middle Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-4 pr-0">
-          <Text className="form-control" id="firstName" placeholder="Full Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
+          <Text className="form-control" id="lastname" placeholder="Full Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" type="number" id="homePhone" placeholder="Home Phone" onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text className="form-control" type="number" id="homephone" placeholder="Home Phone" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="mobilePhone" type="number" placeholder="Mobile Phone" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text className="form-control" id="mobilephone" type="number" placeholder="Mobile Phone" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
         </div>
         <div className="form-group col-12">
-          <Text type="email" className="form-control" id="email" placeholder="Email" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text type="email" className="form-control" id="emailaddress" placeholder="Email" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
         </div>
-        <div className="form-group col-12"><h4>Address</h4></div>
+      </>
+
+    )
+  }
+
+  const Address = () => {
+    return (
+      <>
         <div className="form-group col-12">
-          <Text className="form-control" id="streetAddres" placeholder="Street address, P.O. Box, c/o" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="street1" placeholder="Street address, P.O. Box, c/o" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="infraStructureType" placeholder="Suite, unit, building, floor etc." onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="street2" placeholder="Suite, unit, building, floor etc." onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
         <div className="form-group col-12">
           <Text className="form-control" id="city" placeholder="City" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
@@ -114,11 +145,21 @@ const Signup = () => {
           <Text className="form-control" id="state" placeholder="State/Province/Region" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="postalCode" placeholder="Postal Code" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="postalcode" placeholder="Postal Code" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
         <div className="form-group col-12">
           <Dropdown className="form-control" id="country" placeholder="Country" options={constant.countries} value={payload.address.country} onChange={(value: any) => createSignupPayload(value, 'address')} />
         </div>
+      </>
+    )
+  }
+
+  const IndividualDetails = () => {
+    return (
+      <div className='row'>
+        <PrimaryDetails />
+        <div className="form-group col-12"><h4>Address</h4></div>
+        <Address />
       </div>
     )
   }
@@ -127,16 +168,16 @@ const Signup = () => {
     return (
       <div className='row'>
         <div className="form-group col-12">
-          <Text className="form-control" id="id" placeholder="User ID" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be unique and 8-20 characters long." />
+          <Text className="form-control" id="loginname" placeholder="User ID" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be unique and 8-20 characters long." />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="password" type='password' placeholder="Password" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be 8-20 characters long, atleast one letter and one number." />
+          <Text className="form-control" id="pwd" type='password' placeholder="Password" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be 8-20 characters long, atleast one letter and one number." />
         </div>
         <div className="form-group col-12">
-          <Dropdown className="form-control" id="hintQuestion" value={payload.passwordRecovery.hintQuestion} placeholder="Hint Question" options={constant.hintQuestions} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} />
+          <Dropdown className="form-control" id="pwdhintq"  required={true} value={payload.passwordRecovery.hintQuestion} placeholder="Hint Question" options={constant.hintQuestions} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="passwordHint" type='password' placeholder="Password Hint" required={true} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} helperText="Remember this to recover your User ID / Password." />
+          <Text className="form-control" id="pwdhint" type='password' placeholder="Password Hint" required={true} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} helperText="Remember this to recover your User ID / Password." />
         </div>
         <div className="form-group col-12 text-center">
           <small id="signupterms" className="text-muted">By signing up you agree to our <a href="/termsofservice">Terms of Service</a>.</small>

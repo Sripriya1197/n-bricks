@@ -22,6 +22,10 @@
     }
 
 
+    button:focus {
+        outline: 1px dotted $color-gray;
+    }
+
     .btn-group {
         .btn {
             margin-right: 0.5em;
@@ -56,9 +60,14 @@
 
     .role-icons {
         margin-right: 5px;
-        .btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active, button:not(:disabled) {
+
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        button:not(:disabled) {
             background: white;
         }
+
         svg {
             background: #FFFFFF;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
@@ -83,11 +92,12 @@
 }
 
 .logo {
-  img {
-    width: 5rem;
-    height: 5rem;
-  } 
-   margin-top: 2%; 
-   display: flex;
-   justify-content: center;
+    img {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
 }
