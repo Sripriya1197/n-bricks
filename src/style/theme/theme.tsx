@@ -7,6 +7,20 @@ export const theme = createTheme({
         },
         secondary : {
             main: '#888291'
+        },
+        action : {
+            hover: "#F25E25",
+            focus: "#F25E25"
+        }
+    },
+    typography : {
+        fontFamily: "Noto Sans"
+    },
+    components: {
+        MuiIconButton: {
+            styleOverrides: {
+            
+            }
         }
     }
 });

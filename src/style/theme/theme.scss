@@ -24,7 +24,7 @@ button:not(:disabled) {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: $color-gray;
-    background-color: white;
+    background-color: $color-white;
     border-color: $color-gray;
 }
 
@@ -54,8 +54,12 @@ button:not(:disabled) {
 
 .MuiTextField-root,
 .MuiOutlinedInput-root {
-    background: #FFFFFF;
+    background: $color-white;
     border: 0px solid #D3D3D3 !important;
     box-sizing: border-box !important;
     border-radius: 10px !important;
+}
+
+a {
+    color: $color-orange;
 }

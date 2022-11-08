@@ -4,7 +4,8 @@
     width: 65rem;
     padding: 3%;
     background: white;
-
+    margin-top: -2rem;
+    padding-top: 3rem;
     .required label::after {
         content: " *";
         color: #e32;
@@ -62,7 +63,6 @@
         margin-right: 5px;
 
         .btn-primary,
-        .btn-primary:hover,
         .btn-primary:not(:disabled):not(.disabled):active,
         button:not(:disabled) {
             background: white;
@@ -95,6 +95,7 @@
     img {
         width: 5rem;
         height: 5rem;
+        z-index: 10;
     }
 
     margin-top: 2%;
