@@ -35,9 +35,10 @@ const Text = (props: {
                 disabled={disabled}
                 label={placeholder}
                 placeholder={placeholder}
-                value={value}
+                value={newValue}
                 onChange={(event) => onchangeValue(event)}
                 helperText={helperText}
+                inputProps={{ style: { color: 'white' } }}
             />
         </>
     )

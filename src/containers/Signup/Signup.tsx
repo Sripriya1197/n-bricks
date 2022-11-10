@@ -18,13 +18,14 @@ import Logo from '../../assets/favicon.png';
 
 const Signup = () => {
 
-  const [pwdValidation, setPwdValidated] = useState(false);
-  const [userIdValidation, setUserIdValidated] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
 
-  const { ValidatePassword, ValidateMinMaxlength } = useValidator();
-  const [captchaToken, setToken] = useState();
-  const [showBusinessSection, setBusinessSection] = useState(true);
+
+  const defaultPayload = {
+    userClassification: "MYORG",
+    role: "AGT",
+    country: "a955d0b1-5e69-4136-b496-6c410033547A",
+    pwdhintq: "a955d0b1-5e69-4136-b496-6c410033547A"
+  }
   const TypeRoles = [
     { id: 'AGT', svg: <Agent />, label: "Agent" },
     { id: 'AGT', svg: <Broker />, label: "Broker" },
@@ -37,12 +38,34 @@ const Signup = () => {
     { id: 'AGT', svg: <Supplier />, label: "Supplier" }
   ]
 
+  const [pwd, setPwd] = useState();
+  const [loginname, setUserId] = useState();
+  const [activeStep, setActiveStep] = useState(0);
+  const [dataSiteKey, setDataSiteKey] = useState('');
+  const [countries, setCountries] = useState([]);
+  const [hintQuestions, sethintQuestions] = useState([]);
+  const { ValidatePassword, ValidateMinMaxlength } = useValidator();
+  const [captchaToken, setToken] = useState();
+  const [showBusinessSection, setBusinessSection] = useState(true);
+  const [payload, updatePayload] = useState<any>(defaultPayload);
+
+
+
   useEffect(() => {
     get('/reCaptchaSiteKey').then((response: any) => {
-      console.log(response);
+      if (response && response.data) {
+        setDataSiteKey(response.data)
+      }
     })
     get('/typereferences/groups/CTRY').then((response: any) => {
-      console.log(response);
+      if (response && response.data) {
+        setCountries(response.data);
+      }
+    })
+    get('/typereferences/groups/SUPSC').then((response: any) => {
+      if (response && response.data) {
+        sethintQuestions(response.data);
+      }
     })
   }, []);
 
@@ -116,13 +139,13 @@ const Signup = () => {
           <Text className="form-control" id="lastname" placeholder="Full Name" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" type="number" id="homephone" placeholder="Home Phone" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text className="form-control" type="number" id="homephone" placeholder="Home Phone" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="mobilephone" type="number" placeholder="Mobile Phone" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text className="form-control" id="mobilephone" type="number" placeholder="Mobile Phone" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text type="email" className="form-control" id="emailaddress" placeholder="Email" required={true} onChange={(value: any) => createSignupPayload(value, 'contact')} />
+          <Text type="email" className="form-control" id="emailaddress" placeholder="Email" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
       </>
 
@@ -133,22 +156,22 @@ const Signup = () => {
     return (
       <>
         <div className="form-group col-12">
-          <Text className="form-control" id="street1" placeholder="Street address, P.O. Box, c/o" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="street1" placeholder="Street address, P.O. Box, c/o" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="street2" placeholder="Suite, unit, building, floor etc." onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="street2" placeholder="Suite, unit, building, floor etc." onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="city" placeholder="City" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="city" placeholder="City" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="state" placeholder="State/Province/Region" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="state" placeholder="State/Province/Region" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="postalcode" placeholder="Postal Code" required={true} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Text className="form-control" id="postalcode" placeholder="Postal Code" required={true} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Dropdown className="form-control" id="country" placeholder="Country" options={constant.countries} value={payload.address.country} onChange={(value: any) => createSignupPayload(value, 'address')} />
+          <Dropdown className="form-control" id="country" placeholder="Country" options={countries} value={payload.country} onChange={(value: any) => createSignupPayload(value)} />
         </div>
       </>
     )
@@ -168,22 +191,22 @@ const Signup = () => {
     return (
       <div className='row'>
         <div className="form-group col-12">
-          <Text className="form-control" id="loginname" placeholder="User ID" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be unique and 8-20 characters long." />
+          <Text className="form-control" id="loginname" placeholder="User ID" minLength={8} maxLength={20} required={true} value={loginname} onChange={(value: any) => createSignupPayload(value, '/persons/validate/loginname/')} helperText="Must be unique and 8-20 characters long." />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="pwd" type='password' placeholder="Password" minLength={8} maxLength={20} required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Must be 8-20 characters long, atleast one letter and one number." />
+          <Text className="form-control" id="pwd" type='password' placeholder="Password" minLength={8} maxLength={20} value={pwd} required={true} onChange={(value: any) => createSignupPayload(value, '/persons/validate/password/')} helperText="Must be 8-20 characters long, atleast one letter and one number." />
         </div>
         <div className="form-group col-12">
-          <Dropdown className="form-control" id="pwdhintq"  required={true} value={payload.passwordRecovery.hintQuestion} placeholder="Hint Question" options={constant.hintQuestions} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} />
+          <Dropdown className="form-control" id="pwdhintq" required={true} value={payload.pwdhintq} placeholder="Hint Question" options={hintQuestions} onChange={(value: any) => createSignupPayload(value)} />
         </div>
         <div className="form-group col-12">
-          <Text className="form-control" id="pwdhint" type='password' placeholder="Password Hint" required={true} onChange={(value: any) => createSignupPayload(value, 'passwordRecovery')} helperText="Remember this to recover your User ID / Password." />
+          <Text className="form-control" id="pwdhint" type='password' placeholder="Password Hint" required={true} onChange={(value: any) => createSignupPayload(value)} helperText="Remember this to recover your User ID / Password." />
         </div>
         <div className="form-group col-12 text-center">
           <small id="signupterms" className="text-muted">By signing up you agree to our <a href="/termsofservice">Terms of Service</a>.</small>
         </div>
         <div className="form-group col-12 d-flex justify-content-center">
-          <ReCAPTCHA sitekey="6LeNQ4YiAAAAACr0Ds8VmpuDdrQ76oFFfYyLAAkN" onChange={(token: any) => token === null ? setToken(undefined) : setToken(token)} />
+          <ReCAPTCHA sitekey={dataSiteKey} onChange={(token: any) => token === null ? setToken(undefined) : setToken(token)} />
         </div>
 
 
@@ -191,37 +214,25 @@ const Signup = () => {
     )
   }
 
-  const steps = [{ label: 'Type', component: <Type /> }, { label: 'User Details', component: <UserDetails /> }, { label: 'Set Password', component: <SetPassword /> }];
+  const createSignupPayload = (event: any, apiRequest?: string) => {
 
-  const defaultPayload = {
-    userClassification: "MYORG",
-    role: "AGT",
-    address: {
-      country: "US"
-    },
-    passwordRecovery: {
-      hintQuestion: "QU1"
-    }
-  }
-  const [payload, updatePayload] = useState<any>(defaultPayload);
-
-  const createSignupPayload = (event: any, group?: any) => {
-    getValidation(event);
-    if (Object.hasOwn(payload, group)) {
-      Object.assign(payload, { [group]: { ...payload[group], ...{ [event.target.id]: event.target.value } } });
-    } else if (group) {
-      Object.assign(payload, { [group]: { [event.target.id]: event.target.value } });
+    if (apiRequest) {
+      get(apiRequest + event.target.value).then((response) => {
+        if (response) {
+          Object.assign(payload, { [event.target.id]: event.target.value });
+          if (event.target.id == 'loginname') {
+            setUserId(event.target.value)
+          } 
+          if (event.target.id == 'pwd') {
+            setPwd(event.target.value);
+          }
+            Object.assign(payload, { [event.target.id]: event.target.value });
+            updatePayload(payload);
+        }
+      })
     } else {
       Object.assign(payload, { [event.target.id]: event.target.value });
-    }
-    updatePayload(payload);
-  }
-
-  const getValidation = (event: any) => {
-    if (event.target.id === 'password') {
-      setPwdValidated(ValidatePassword(event.target.value))
-    } else if (event.target.id === 'id') {
-      setUserIdValidated(ValidateMinMaxlength(event));
+      updatePayload(payload);
     }
   }
 
@@ -245,7 +256,7 @@ const Signup = () => {
     }
   }
 
-
+  const steps = [{ label: 'Type', component: <Type /> }, { label: 'User Details', component: <UserDetails /> }, { label: 'Set Password', component: <SetPassword /> }];
 
   return (
     <div>
@@ -271,9 +282,9 @@ const Signup = () => {
           </div>
           <div className='row'>
             <div className="col-6 form-group line-border">
-              <h2>Create n-Bricks Account</h2>
+              <h2 style={{ fontWeight: '700' }}>Create n-Bricks Account</h2>
               <h4>Enormous and Endless Opportunities</h4>
-              <p style={{color: '#687078', lineHeight: '30px'}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+              <p style={{ color: '#687078', lineHeight: '30px' }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
               <p>Already have an account? <a href="/signin">Sign In</a></p>
             </div>
             <div className="col-6 form-group">

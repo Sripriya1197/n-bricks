@@ -30,7 +30,7 @@ const Dropdown = (props: { value?: string; options?: any; placeholder?: string; 
                 <MenuItem value="">
                     <em>None</em>
                 </MenuItem>
-                {options.map((option: any, index: number) => <MenuItem key={option.value + index} value={option.value}>{option.label}</MenuItem>)}
+                {options.map((option: any, index: number) => <MenuItem key={option.uid + index} value={option.uid}>{option.description}</MenuItem>)}
             </Select>
             <FormHelperText>{helperText}</FormHelperText>
         </>
