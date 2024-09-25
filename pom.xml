@@ -70,7 +70,7 @@
     <artifactId>sonar-maven-plugin</artifactId>
     <version>4.0.0.4121</version> <!-- Latest version -->
 </plugin>
-	    <plugin>
+   <plugin>
     <groupId>org.owasp.maven.plugins</groupId>
     <artifactId>dependency-check-maven</artifactId>
     <version>7.1.1</version> <!-- Use the latest version -->
@@ -79,9 +79,6 @@
         <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
         <format>ALL</format>
     </configuration>
-		     
-
-	    
     </plugins>
   </build>
 </project>
