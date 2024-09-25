@@ -79,26 +79,7 @@
         <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
         <format>ALL</format>
     </configuration>
-		     <plugin>
-            <groupId>org.owasp.maven.plugins</groupId>
-            <artifactId>dependency-check-maven</artifactId>
-            <version>7.0.4</version> <!-- Check for the latest version -->
-            <configuration>
-                <failOnError>true</failOnError>
-                <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
-                <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
-                <format>XML</format> <!-- You can also specify HTML or JSON -->
-            </configuration>
-            <executions>
-                <execution>
-                    <id>dependency-check</id>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-
+		     
 
 	    
     </plugins>
