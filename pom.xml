@@ -1,84 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>kms-api-examples</groupId>
+    <artifactId>kms-api-examples</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>kms-api-examples</groupId>
-  <artifactId>kms-api-examples</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-<properties>
-	<jacoco.version>0.8.6</jacoco.version>
-<sonar.java.coveragePlugins>jacoco</sonar.java.coveragePlugins>
-<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
-<sonar.language>java</sonar.language>
-</properties>
-  <dependencies>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.3.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient-cache</artifactId>
-			<version>4.3.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-			<version>4.3.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.4.0</version>
-		</dependency>
-	  <dependency>
-    <groupId>org.jacoco</groupId>
-    <artifactId>jacoco-maven-plugin</artifactId>
-    <version>0.8.6</version>
-</dependency> 
-	  <dependency>
-                        <groupId>org.owasp.maven.enforcer</groupId>
-                        <artifactId>class-file-format-rule</artifactId>
-                        <version>2.0.0</version>
-                    </dependency>
-	  
-	</dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-	    <plugin>
-    <groupId>org.sonarsource.scanner.maven</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>4.0.0.4121</version> <!-- Latest version -->
-</plugin>
-   <plugin>
-    <groupId>org.owasp.maven.plugins</groupId>
-    <artifactId>dependency-check-maven</artifactId>
-    <version>7.1.1</version> <!-- Use the latest version -->
-    <configuration>
-        <failBuildOnCVSS>7</failBuildOnCVSS>
-        <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
-        <format>ALL</format>
-    </configuration>
-    </plugins>
-  </build>
+    <properties>
+        <jacoco.version>0.8.6</jacoco.version>
+        <sonar.java.coveragePlugins>jacoco</sonar.java.coveragePlugins>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-cache</artifactId>
+            <version>4.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.version}</version>
+            <scope>test</scope> <!-- Typically scoped to test -->
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.maven.enforcer</groupId>
+            <artifactId>class-file-format-rule</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version> <!-- Latest version -->
+            </plugin>
+            <plugin>
+                <groupId>org.owasp.maven.plugins</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>7.1.1</version> <!-- Use the latest version -->
+                <configuration>
+                    <failBuildOnCVSS>7</failBuildOnCVSS>
+                    <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
+                    <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory> <!-- Specify the output directory -->
+                    <format>ALL</format>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>dependency-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
