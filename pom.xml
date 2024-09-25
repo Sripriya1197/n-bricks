@@ -72,25 +72,26 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>4.0.0.4121</version> <!-- Latest version -->
             </plugin>
-            <plugin>
-                <groupId>org.owasp.maven.plugins</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>7.1.1</version> <!-- Use the latest version -->
-                <configuration>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                    <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
-                    <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory> <!-- Specify the output directory -->
-                    <format>ALL</format>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>dependency-check</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+           <plugin>
+    <groupId>org.owasp.maven.plugins</groupId>
+    <artifactId>dependency-check-maven</artifactId>
+    <version>7.1.2</version> <!-- Update to the latest version -->
+    <configuration>
+        <failBuildOnCVSS>7</failBuildOnCVSS>
+        <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
+        <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
+        <format>ALL</format>
+    </configuration>
+    <executions>
+        <execution>
+            <id>dependency-check</id>
+            <goals>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
         </plugins>
     </build>
 </project>
