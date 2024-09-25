@@ -75,7 +75,7 @@
            <plugin>
     <groupId>org.owasp.maven.plugins</groupId>
     <artifactId>dependency-check-maven</artifactId>
-    <version>7.1.2</version> <!-- Update to the latest version -->
+    <version>7.1.3</version> <!-- Replace with the latest version found -->
     <configuration>
         <failBuildOnCVSS>7</failBuildOnCVSS>
         <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
@@ -91,6 +91,7 @@
         </execution>
     </executions>
 </plugin>
+
 
         </plugins>
     </build>
