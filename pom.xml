@@ -81,9 +81,9 @@
                 <version>4.0.0.4121</version> <!-- Latest version -->
             </plugin>
     <plugin>
-    <groupId>org.owasp.maven.plugins</groupId>
+    <groupId>org.owasp</groupId>
     <artifactId>dependency-check-maven</artifactId>
-    <version>7.0.4</version> <!-- Change to a stable version -->
+    <version>10.0.4</version>
     <configuration>
         <failBuildOnCVSS>7</failBuildOnCVSS>
         <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
