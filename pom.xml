@@ -5,6 +5,7 @@
     <groupId>kms-api-examples</groupId>
     <artifactId>kms-api-examples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <jacoco.version>0.8.6</jacoco.version>
