@@ -98,6 +98,14 @@
             </goals>
         </execution>
     </executions>
+              <plugin>
+            <groupId>org.owasp.maven.plugins</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>7.0.4</version> <!-- Use the latest version -->
+            <configuration>
+                <nvdApiKey>Your_NVD_API_Key_Here</nvdApiKey>
+            </configuration>
+        </plugin>
 </plugin>
 
 
