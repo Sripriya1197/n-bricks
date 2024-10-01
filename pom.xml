@@ -41,17 +41,21 @@
                 <version>${spring.boot.version}</version> <!-- Use property for version -->
             </plugin>
                   <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>3.3.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <groupId>org.owasp.maven.plugins</groupId>
+    <artifactId>dependency-check-maven</artifactId>
+    <version>6.6.0</version>
+    <configuration>
+        <failOnError>true</failOnError>
+        <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
