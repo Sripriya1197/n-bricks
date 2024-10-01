@@ -1,0 +1,13 @@
+# Ignore Maven target directory
+target/
+
+# Ignore IDE files (for example, IntelliJ or Eclipse)
+.idea/
+*.iml
+*.class
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
