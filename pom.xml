@@ -43,18 +43,11 @@
                   <plugin>
     <groupId>org.owasp.maven.plugins</groupId>
     <artifactId>dependency-check-maven</artifactId>
-    <version>6.6.0</version>
+    <version>7.0.0</version> <!-- Example: latest version -->
     <configuration>
         <failOnError>true</failOnError>
         <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
     </configuration>
-    <executions>
-        <execution>
-            <goals>
-                <goal>check</goal>
-            </goals>
-        </execution>
-    </executions>
 </plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
@@ -63,4 +56,10 @@
             </plugin>
         </plugins>
     </build>
+         <repositories>
+    <repository>
+        <id>owasp</id>
+        <url>https://repository.owasp.org/artifactory/owasp</url>
+    </repository>
+</repositories>
 </project>
